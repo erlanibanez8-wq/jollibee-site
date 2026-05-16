@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jollibee Online – Order Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D62300;
+    --red-dark: #A31B00;
+    --red-light: #FF3D1A;
+    --yellow: #FFC200;
+    --yellow-dark: #E6A800;
+    --cream: #FFF8EF;
+    --dark: #1A0A00;
+    --dark2: #2E1500;
+    --text: #3D1F00;
+    --muted: #7A4F2A;
+    --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --surface: #FFF3E0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--red);
+    padding: 0 5vw;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .bee-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo-text span { color: var(--yellow); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.88);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--yellow); }
+
+  .nav-cta {
+    background: var(--yellow) !important;
+    color: var(--dark) !important;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--yellow-dark) !important;
+    transform: translateY(-1px);
+  }
+
+  /* HERO */
+  .hero {
+    padding-top: 68px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 50%, #FF5722 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding-left: 8vw;
+    padding-right: 4vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    background: rgba(255,194,0,0.12);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 400px; height: 400px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 5.5vw, 78px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .hero-title .accent { color: var(--yellow); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--dark);
+    border: none;
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 20px rgba(255,194,0,0.5);
+  }
+
+  .btn-primary:hover {
+    background: var(--yellow-dark);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--yellow);
+    background: rgba(255,194,0,0.12);
+    color: var(--yellow);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 52px;
+  }
+
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--yellow);
+  }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+  }
+
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+  }
+
+  .food-showcase {
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: rgba(255,194,0,0.15);
+    border: 3px solid rgba(255,194,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 140px;
+    animation: float 4s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+  }
+
+  .food-orbits {
+    position: absolute;
+    width: 100%; height: 100%;
+  }
+
+  .orbit-item {
+    position: absolute;
+    background: var(--yellow);
+    border-radius: 50%;
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+
+  .orbit-item:nth-child(1) { top: 8%; left: 78%; }
+  .orbit-item:nth-child(2) { top: 78%; left: 82%; }
+  .orbit-item:nth-child(3) { top: 80%; left: 10%; }
+  .orbit-item:nth-child(4) { top: 8%; left: 10%; }
+
+  /* PLATFORMS */
+  .section {
+    padding: 100px 8vw;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    color: var(--dark);
+    line-height: 1.1;
+  }
+
+  .section-title span { color: var(--red); }
+
+  .section-sub {
+    margin-top: 16px;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* ORDER PLATFORMS */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .platform-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 2px 24px rgba(214,35,0,0.08);
+    border: 1px solid rgba(214,35,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .platform-card:hover::before { transform: scaleX(1); }
+
+  .platform-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(214,35,0,0.18);
+  }
+
+  .platform-card.featured {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  .platform-card.featured::before {
+    background: var(--yellow);
+  }
+
+  .platform-card.featured .platform-name,
+  .platform-card.featured .platform-desc { color: var(--white); }
+
+  .platform-card.featured .platform-tag {
+    background: rgba(255,255,255,0.2);
+    color: var(--white);
+  }
+
+  .platform-icon {
+    width: 80px; height: 80px;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 20px;
+  }
+
+  .platform-card:not(.featured) .platform-icon {
+    background: var(--surface);
+  }
+
+  .platform-card.featured .platform-icon {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .platform-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .platform-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .platform-tag {
+    display: inline-block;
+    background: var(--surface);
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+
+  .platform-btn {
+    display: block;
+    margin-top: 24px;
+    padding: 13px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .platform-card:not(.featured) .platform-btn {
+    background: var(--red);
+    color: var(--white);
+  }
+
+  .platform-card.featured .platform-btn {
+    background: var(--yellow);
+    color: var(--dark);
+  }
+
+  .platform-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  /* MENU */
+  .menu-section {
+    background: var(--dark);
+    padding: 100px 8vw;
+  }
+
+  .menu-section .section-title { color: var(--white); }
+  .menu-section .section-eyebrow { color: var(--yellow); }
+  .menu-section .section-sub { color: rgba(255,255,255,0.55); }
+
+  .menu-tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 10px 24px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .tab.active, .tab:hover {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .menu-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+
+  .menu-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: rgba(255,194,0,0.3);
+  }
+
+  .menu-img {
+    height: 160px;
+    background: rgba(255,194,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+  }
+
+  .menu-info {
+    padding: 16px 18px 20px;
+  }
+
+  .menu-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .menu-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--yellow);
+  }
+
+  .menu-add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+
+  .menu-tag {
+    font-size: 11px;
+    background: rgba(214,35,0,0.3);
+    color: #FF8870;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .add-btn {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--dark);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    transition: transform 0.15s, background 0.15s;
+  }
+
+  .add-btn:hover { transform: scale(1.12); background: var(--yellow-dark); }
+
+  /* DELIVERY */
+  .delivery-section {
+    padding: 100px 8vw;
+    background: var(--cream);
+  }
+
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .delivery-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 36px;
+  }
+
+  .step:last-child { padding-bottom: 0; }
+
+  .step-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .step-num {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(214,35,0,0.35);
+  }
+
+  .step-line {
+    width: 2px;
+    flex: 1;
+    background: rgba(214,35,0,0.2);
+    margin-top: 6px;
+  }
+
+  .step:last-child .step-line { display: none; }
+
+  .step-content { padding-top: 10px; }
+  .step-title {
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .step-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .delivery-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 40px 36px;
+    box-shadow: 0 8px 48px rgba(214,35,0,0.12);
+    border: 1px solid rgba(214,35,0,0.08);
+  }
+
+  .delivery-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .delivery-card-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .app-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(214,35,0,0.15);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    background: var(--cream);
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  }
+
+  .app-btn:hover {
+    border-color: var(--red);
+    background: var(--white);
+    transform: translateX(4px);
+  }
+
+  .app-btn-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .app-btn-text small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .app-btn-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  /* PROMO */
+  .promo-section {
+    background: var(--yellow);
+    padding: 80px 8vw;
+  }
+
+  .promo-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .promo-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .promo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 900;
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .promo-sub {
+    font-size: 17px;
+    color: rgba(30,10,0,0.65);
+    margin-bottom: 36px;
+  }
+
+  .promo-code-wrap {
+    display: inline-flex;
+    align-items: center;
+    background: var(--white);
+    border-radius: 100px;
+    padding: 6px 6px 6px 28px;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+
+  .promo-code {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 2px;
+  }
+
+  .copy-btn {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .copy-btn:hover { background: var(--red-dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2);
+    padding: 60px 8vw 36px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand {}
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--yellow); }
+
+  .footer-tagline {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .social-link:hover { background: var(--red); }
+
+  .footer-col-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--yellow); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+  }
+
+  .footer-bottom a:hover { color: var(--yellow); }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--dark);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 999;
+    border-left: 4px solid var(--yellow);
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 6vw 60px; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-stats { justify-content: center; }
+    .platforms-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .delivery-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="bee-icon">🐝</div>
+    <span class="nav-logo-text">Jolly<span>bee</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#order">Order Online</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#promo">Promos</a></li>
+    <li><a href="https://www.jollibee.com.ph" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-badge">🇵🇭 Pilipinas' #1 Fast Food</span>
+    <h1 class="hero-title">
+      Langhap-Sarap<br><span class="accent">Delivered</span><br>to You
+    </h1>
+    <p class="hero-sub">Order your favorite Chickenjoy, Jolly Spaghetti, and more — delivered hot and fresh, right to your door. Available 24/7 online.</p>
+    <div class="hero-actions">
+      <a href="https://www.jollibee.com.ph/delivery" class="btn-primary">Order Delivery →</a>
+      <a href="#menu" class="btn-ghost">See Our Menu</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">1,100+</div>
+        <div class="stat-label">Stores Nationwide</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30 min</div>
+        <div class="stat-label">Avg. Delivery Time</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.8★</div>
+        <div class="stat-label">App Store Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="food-showcase">
+      🍗
+      <div class="food-orbits">
+        <div class="orbit-item">🍟</div>
+        <div class="orbit-item">🍔</div>
+        <div class="orbit-item">🍝</div>
+        <div class="orbit-item">🥤</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER PLATFORMS -->
+<section class="section" id="order">
+  <div class="section-header">
+    <p class="section-eyebrow">Order Online</p>
+    <h2 class="section-title">Choose Your <span>Platform</span></h2>
+    <p class="section-sub">Multiple ways to get your Jollibee favorites. Pick whichever works best for you.</p>
+  </div>
+  <div class="platforms-grid">
+    <a href="https://www.jollibee.com.ph/delivery" class="platform-card featured">
+      <div class="platform-icon">🌐</div>
+      <h3 class="platform-name">Jollibee Website</h3>
+      <p class="platform-desc">Order directly from our official website. Full menu, exclusive online deals, and fast checkout.</p>
+      <span class="platform-tag">⭐ Official Store</span>
+      <span class="platform-btn">Order on Website</span>
+    </a>
+    <a href="https://www.grab.com/ph/food/" class="platform-card">
+      <div class="platform-icon">🟢</div>
+      <h3 class="platform-name">GrabFood</h3>
+      <p class="platform-desc">Order via GrabFood for fast, tracked delivery and exclusive GrabFood promos and vouchers.</p>
+      <span class="platform-tag">Available Now</span>
+      <span class="platform-btn">Open GrabFood</span>
+    </a>
+    <a href="https://www.foodpanda.ph" class="platform-card">
+      <div class="platform-icon">🐼</div>
+      <h3 class="platform-name">foodpanda</h3>
+      <p class="platform-desc">Get Jollibee delivered via foodpanda. Enjoy pandamart-speed delivery across metro areas.</p>
+      <span class="platform-tag">Available Now</span>
+      <span class="platform-btn">Open foodpanda</span>
+    </a>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-header">
+    <p class="section-eyebrow">Fan Favorites</p>
+    <h2 class="section-title">Our <span style="color: var(--yellow);">Best Sellers</span></h2>
+    <p class="section-sub">The classics that keep Filipinos coming back, every single day.</p>
+  </div>
+  <div class="menu-tabs">
+    <button class="tab active" onclick="filterMenu('all', this)">All</button>
+    <button class="tab" onclick="filterMenu('chicken', this)">Chicken</button>
+    <button class="tab" onclick="filterMenu('burger', this)">Burgers</button>
+    <button class="tab" onclick="filterMenu('pasta', this)">Pasta</button>
+    <button class="tab" onclick="filterMenu('drinks', this)">Drinks</button>
+  </div>
+  <div class="menu-grid" id="menuGrid">
+    <div class="menu-item" data-cat="chicken">
+      <div class="menu-img">🍗</div>
+      <div class="menu-info">
+        <div class="menu-name">1-pc Chickenjoy</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱129</div>
+            <span class="menu-tag">Bestseller</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Chickenjoy')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="burger">
+      <div class="menu-img">🍔</div>
+      <div class="menu-info">
+        <div class="menu-name">Yumburger</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱69</div>
+            <span class="menu-tag">Classic</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Yumburger')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="pasta">
+      <div class="menu-img">🍝</div>
+      <div class="menu-info">
+        <div class="menu-name">Jolly Spaghetti</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱89</div>
+            <span class="menu-tag">Fan Fave</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Jolly Spaghetti')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="chicken">
+      <div class="menu-img">🍟</div>
+      <div class="menu-info">
+        <div class="menu-name">Large Fries</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱69</div>
+            <span class="menu-tag">Crispy</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Large Fries')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="burger">
+      <div class="menu-img">🍔</div>
+      <div class="menu-info">
+        <div class="menu-name">Double Yumburger</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱139</div>
+            <span class="menu-tag">Popular</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Double Yumburger')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="drinks">
+      <div class="menu-img">🥤</div>
+      <div class="menu-info">
+        <div class="menu-name">Peach Mango Pie</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱55</div>
+            <span class="menu-tag">Sweet</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Peach Mango Pie')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="chicken">
+      <div class="menu-img">🍗</div>
+      <div class="menu-info">
+        <div class="menu-name">Chickenjoy Bucket 6pc</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱639</div>
+            <span class="menu-tag">Family</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Chickenjoy Bucket')">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item" data-cat="drinks">
+      <div class="menu-img">🥤</div>
+      <div class="menu-info">
+        <div class="menu-name">Jolly Float</div>
+        <div class="menu-add">
+          <div>
+            <div class="menu-price">₱79</div>
+            <span class="menu-tag">Refreshing</span>
+          </div>
+          <button class="add-btn" onclick="addCart('Jolly Float')">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="delivery-section" id="delivery">
+  <div class="delivery-grid">
+    <div>
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title" style="margin-bottom: 48px;">Order in<br><span>3 Easy Steps</span></h2>
+      <div class="delivery-steps">
+        <div class="step">
+          <div class="step-connector">
+            <div class="step-num">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Choose Your Platform</div>
+            <div class="step-desc">Order via Jollibee's website, mobile app, GrabFood, or foodpanda — whichever you prefer.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-connector">
+            <div class="step-num">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Pick Your Favorites</div>
+            <div class="step-desc">Browse the full menu, customize your order, add drinks and sides, and select your store or delivery address.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-connector">
+            <div class="step-num">3</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Enjoy Your Order!</div>
+            <div class="step-desc">Track your delivery in real time. Langhap-Sarap arrives hot at your door in as fast as 30 minutes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="delivery-card">
+      <div class="delivery-card-title">Download the App</div>
+      <div class="delivery-card-sub">Order faster with the official Jollibee App. Exclusive in-app deals and loyalty points.</div>
+      <div class="app-buttons">
+        <a href="https://apps.apple.com/ph/app/jollibee/id1474556078" class="app-btn">
+          <div class="app-btn-icon" style="background: #f0f0f0;">🍎</div>
+          <div class="app-btn-text">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.jollibee.mobile" class="app-btn">
+          <div class="app-btn-icon" style="background: #f0f0f0;">▶️</div>
+          <div class="app-btn-text">
+            <small>Get it on</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+        <a href="https://www.jollibee.com.ph/delivery" class="app-btn">
+          <div class="app-btn-icon" style="background: #fff4e6;">🌐</div>
+          <div class="app-btn-text">
+            <small>Order via</small>
+            <strong>Official Website</strong>
+          </div>
+        </a>
+        <a href="tel:87000000" class="app-btn">
+          <div class="app-btn-icon" style="background: #ffe8e8;">📞</div>
+          <div class="app-btn-text">
+            <small>Call our hotline</small>
+            <strong>8700-0000</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO -->
+<section class="promo-section" id="promo">
+  <div class="promo-inner">
+    <p class="promo-eyebrow">🎉 Limited Time Offer</p>
+    <h2 class="promo-title">₱50 Off Your First<br>Online Order!</h2>
+    <p class="promo-sub">New to Jollibee Online? Use this promo code at checkout on our website or app.</p>
+    <div class="promo-code-wrap">
+      <span class="promo-code">JOLLY50</span>
+      <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+    </div>
+    <p style="margin-top: 16px; font-size: 13px; color: rgba(30,10,0,0.5);">Valid for new accounts · Min. order ₱299 · Delivery only</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Jolly<span>bee</span></div>
+      <p class="footer-tagline">Spreading joy one Chickenjoy at a time. The #1 fast food brand in the Philippines since 1978.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/Jollibee" class="social-link">📘</a>
+        <a href="https://www.instagram.com/jollibee" class="social-link">📸</a>
+        <a href="https://twitter.com/Jollibee" class="social-link">🐦</a>
+        <a href="https://www.youtube.com/jollibee" class="social-link">▶️</a>
+        <a href="https://www.tiktok.com/@jollibee" class="social-link">🎵</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Order</div>
+      <ul class="footer-links">
+        <li><a href="https://www.jollibee.com.ph/delivery">Delivery</a></li>
+        <li><a href="https://www.jollibee.com.ph/store-locator">Store Locator</a></li>
+        <li><a href="https://www.grab.com/ph/food/">GrabFood</a></li>
+        <li><a href="https://www.foodpanda.ph">foodpanda</a></li>
+        <li><a href="tel:87000000">Call 8700-0000</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Menu</div>
+      <ul class="footer-links">
+        <li><a href="https://www.jollibee.com.ph/menu">Chickenjoy</a></li>
+        <li><a href="https://www.jollibee.com.ph/menu">Yumburger</a></li>
+        <li><a href="https://www.jollibee.com.ph/menu">Jolly Spaghetti</a></li>
+        <li><a href="https://www.jollibee.com.ph/menu">Value Meals</a></li>
+        <li><a href="https://www.jollibee.com.ph/menu">Desserts</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="https://www.jollibee.com.ph/about">About Us</a></li>
+        <li><a href="https://www.jollibee.com.ph/careers">Careers</a></li>
+        <li><a href="https://www.jollibee.com.ph/franchising">Franchising</a></li>
+        <li><a href="https://www.jollibee.com.ph/news">News</a></li>
+        <li><a href="https://www.jollibee.com.ph/contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Jollibee Foods Corporation. All rights reserved.</span>
+    <div style="display: flex; gap: 24px;">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  function addCart(item) {
+    showToast('🛒 ' + item + ' added to your cart!');
+  }
+
+  function copyCode() {
+    navigator.clipboard.writeText('JOLLY50').then(() => {
+      showToast('✅ Promo code JOLLY50 copied!');
+    }).catch(() => {
+      showToast('✅ Code: JOLLY50 — paste it at checkout!');
+    });
+  }
+
+  function filterMenu(cat, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.menu-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
